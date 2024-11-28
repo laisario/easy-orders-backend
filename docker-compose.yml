@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: yarn run start:dev
+    environment:
+      - NODE_ENV=development
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
