@@ -15,5 +15,5 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     synchronize: true,
     entities: [Restaurant, Menu, Table, Order, Employee],
-    migrations: [],
+    migrations: ['src/migrations/*.ts'],
 });
